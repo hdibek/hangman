@@ -1,9 +1,9 @@
 var word="";
 var usedLetters = "";
 var lives = 7;
-var win = 0;
-var game = 0;
-var lose= 0;
+var wins = 0;
+var games = 0;
+var losses= 0;
 
 function arrayStart() {
     document.getElementById("Guess").disabled = true;
@@ -12,22 +12,23 @@ function arrayStart() {
     var easy = ["horse", "cow", "lion", "bird", "dog", "audi", "bmw","nissan","honda","ford"];
     var medium = ["llama", "jaguar", "beaver", "cheetah", "monkey", "toyota", "mazda","lexus", "acura", "subaru"];
     var hard = ["aardvark", "baboon", "elephant", "barracuda", "antelope", "mitsubishi", "maserati","volkswagen","lamborghini","bugatti"];
-    easy.slice;
-    medium.slice;
-    hard.slice;
+
     if (level === "easy") {
         var rnum = Math.floor(Math.random() * 10);
         word = easy[rnum];
+        easy.splice(rnum,1);
         document.getElementById("Guess").disabled = false;
     }
     if (level === "medium") {
         var bnum = Math.floor(Math.random() * 10);
         word = medium[bnum];
+        medium.splice(bnum,1);
         document.getElementById("Guess").disabled = false;
     }
     if (level === "hard") {
         var fnum = Math.floor(Math.random() * 10);
         word = hard[fnum];
+        hard.splice(fnum,1);
         document.getElementById("Guess").disabled = false;
     }
     for (i = 0; i < word.length; i++) {
@@ -61,21 +62,13 @@ function displayWord(){
     document.getElementById("output").innerHTML = display;
     document.getElementById("display").innerHTML = usedLetters;
 
-    if(display.indexOf("_")<0){
-        alert("You Won!");
-        win = win++;
-        games = games++;
-        document.getElementById("output3").innerHTML = "Number 0f Wins: " + win;
-        document.getElementById("output4").innerHTML = "Number 0f Loses: " + lose;
-        document.getElementById("output5").innerHTML = "Number 0f Games: " + game;
-        clear();
-    }
-
+    return (display.indexOf("_")<0);//more matches to be found
 }
 
 function enterValue(){
     document.getElementById("Start").disabled = true;
     var goodGuess = true;
+    var allFound = false;
     var guess = prompt("Guess a letter").toLowerCase();
     if (guess.length !== 1){
         goodGuess = false;
@@ -93,28 +86,33 @@ function enterValue(){
     }
     if(goodGuess === true){
         usedLetters = usedLetters + guess;
-        displayWord();
+        allFound = displayWord();
     }
-    if (word.indexOf(guess) >= 0) {
-        alert(lives);
-    }
-    else {
+    if (word.indexOf(guess) < 0) {
         lives = lives - 1;
-        alert(lives);
     }
-
     setImageBasedOnLives();
 
-    if (lives === 0){
-        document.getElementById("gallows").src ="resources/"+ pics[7];
+    if(allFound){
+        alert("You Won!");
+        wins=wins+1;
+        games=games+1;
+        showStats();
+        clearScreen();
+    }else if (lives === 0){
+        setImageBasedOnLives();
         alert("You Lose!");
-        lose = lose++;
-        game = game++;
-        document.getElementById("output3").innerHTML = "Number 0f Wins: " + win;
-        document.getElementById("output4").innerHTML = "Number 0f Loses: " + lose;
-        document.getElementById("output5").innerHTML = "Number 0f Games: " + game;
-        clear();
+        losses = losses+1;
+        games = games+1;
+        showStats();
+        clearScreen();
     }
+}
+function showStats() {
+    document.getElementById("output3").innerHTML = "Number 0f Wins: " + wins;
+    document.getElementById("output4").innerHTML = "Number 0f Losses: " + losses;
+    document.getElementById("output5").innerHTML = "Number 0f Games: " + games;
+
 }
 function setImageBasedOnLives(){
     //var pics=["hang1.gif","hang2.gif","hang3.gif","hang4.gif","hang5.gif","hang6.gif","hang7.gif","hang8.gif"];
