@@ -102,12 +102,11 @@ function enterValue(){
         lives = lives - 1;
         alert(lives);
     }
-    //var pics=["hang1.gif","hang2.gif","hang3.gif","hang4.gif","hang5.gif","hang6.gif","hang7.gif","hang8.gif"];
-    var pics=["hang1.jpg","hang2.jpg","hang3.jpg","hang4.jpg","hang5.jpg","hang6.jpg","hang7.jpg","hang8.jpg"];
-    document.getElementById("gallows").src ="resources/"+ pics[8-lives];
+
+    setImageBasedOnLives();
 
     if (lives === 0){
-        document.getElementById("gallows").src ="resources/"+ pics[8];
+        document.getElementById("gallows").src ="resources/"+ pics[7];
         alert("You Lose!");
         lose = lose++;
         game = game++;
@@ -117,12 +116,20 @@ function enterValue(){
         clear();
     }
 }
-function clear(){
+function setImageBasedOnLives(){
+    //var pics=["hang1.gif","hang2.gif","hang3.gif","hang4.gif","hang5.gif","hang6.gif","hang7.gif","hang8.gif"];
+    var pics=["hang1.jpg","hang2.jpg","hang3.jpg","hang4.jpg","hang5.jpg","hang6.jpg","hang7.jpg","hang8.jpg"];
+
+    document.getElementById("gallows").src ="resources/"+ pics[7-lives];
+}
+function clearScreen(){
     document.getElementById("output").innerHTML = null;
     document.getElementById("display").innerHTML = null;
     document.getElementById("output2").innerHTML = null;
     usedLetters = "";
     word = "";
+    lives = 7;
+    setImageBasedOnLives();
     document.getElementById("Start").disabled = false;
     document.getElementById("Guess").disabled = true;
 }
