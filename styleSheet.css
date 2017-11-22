@@ -1,27 +1,27 @@
 h1 {
-    color: #f5bfff
+    color: #949990
 }
 #output {
     border-style: solid;
     width: 175px;
     height: 25px;
-    color: #8ab1ff;
+    color: #949990;
 }
 #display {
     border-style: solid;
     width: 175px;
     height: 100px;
-    color: #8ab1ff;
+    color: #949990;
 }
 
 input {
-    background-color: #f5bfff;
+    background-color: #949990;
     color: white;
 }
 input:hover {
     background-color: white;
-    color: #f5bfff;
-    border: 2px solid #f5bfff;
+    color: #949990;
+    border: 2px solid #949990;
 }
 input{
     width: 132px;

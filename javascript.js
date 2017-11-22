@@ -133,3 +133,6 @@ function clearScreen(){
     document.getElementById("Start").disabled = false;
     document.getElementById("Guess").disabled = true;
 }
+function setBackground(selected) {
+    document.body.style.backgroundImage="url("+selected.value+")";
+}

@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="styleSheet.css">
     <script src="javascript.js"></script>
 </head>
-<body>
+<body style='background-image: url("resources/background1.jpg") ; background-size: cover'>
 <h1>Hangman</h1>
 <img id ="gallows" src="resources/hang1.jpg" height="142" width = "142">
 <p id = "output"></p>
@@ -17,6 +17,13 @@
 <input type = "button" onclick="clearScreen()" id="Clear" value = "Clear">
 <p id = "display"></p>
 <br>
+<select id="backgroundSelector" onchange="setBackground(this)">
+    <option value="resources/background1.jpg">Bacground 1</option>
+    <option value="resources/background2.jpg">Bacground 2</option>
+    <option value="resources/background3.jpg">Bacground 3</option>
+    <option value="resources/background4.jpg">Bacground 4</option>
+    <option value="resources/background5.jpg">Bacground 5</option>
+</select>
 <p>Category: </p><p id = "output2"></p>
 <br>
 <p id = "output3"></p>
